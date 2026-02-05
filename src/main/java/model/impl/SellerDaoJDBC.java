@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class SellerDaoJDBC implements SellerDao {
 
-    private Connection conn;
+    private final Connection conn;
 
     public SellerDaoJDBC(Connection conn) {
         this.conn = conn;
@@ -120,8 +120,7 @@ public class SellerDaoJDBC implements SellerDao {
 
             if (rs.next()) {
                 Department dep = instantiateDepartment(rs);
-                Seller obj = instantiateSeller(rs, dep);
-                return obj;
+                return instantiateSeller(rs, dep);
             }
 
             return null;
